@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jejak Banyuwangi - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body class="font-[Montserrat]">
+
+<!-- BG layers (same as Login) -->
+<div class="bg-fixed"></div>
+<div class="bg-overlay"></div>
+
+            <!--Navigation Bar-->
+            <header class="w-full flex justify-center"> 
+                <nav class="flex justify-between items-center w-[92%] py-2 border-b-2 z-50">
+                    <!--Logo Image-->
+                    <div class="w-[387px]">
+                        <a href="index.html">
+                            <img src="Image_Assets/Logo.png" alt="Logo">
+                        </a>
+                    </div>
+
+                    <!--Nav Buttons-->
+                    <div>
+                        <ul class="flex items-center gap-[6vw] font-bold text-xl text-white">
+                            <li>
+                                <a class="border-b-2 border-transparent hover:border-white transition-all duration-300 pb-2" href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <a class="border-b-2 border-transparent hover:border-white transition-all duration-300 pb-2" href="packages.html">Packages</a>
+                            </li>
+                            <li>
+                                <a class="border-b-2 border-transparent hover:border-white transition-all duration-300 pb-2" href="explore.html">Explore</a>
+                            </li> 
+                            <li>
+                                <a class="border-b-2 border-transparent hover:border-white transition-all duration-300 pb-2" href="about.html">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!--Get Started / Sign In Button-->
+                    <div class="w-[200px] flex justify-end">
+                        <div class="p-[2px] rounded-full" style="background: linear-gradient(to right, #4CB7FF, #FFFFFF, #EFEB6C)">
+                            <button onclick="location.href='Login.html'" class="bg-white font-bold text-xl rounded-full w-[182px] h-[48px] cursor-pointer transform hover:scale-110 duration-300">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+
+<!-- MAIN -->
+<main class="relative z-10 flex items-center justify-between w-[80%] mx-auto min-h-[calc(100vh-80px)]">
+
+    <!-- LEFT: Sign Up Card — same width as Login card -->
+    <div class="glass-card p-8 w-[480px] flex flex-col gap-5">
+
+        <!-- LogoMini + heading -->
+        <div class="flex items-center gap-4">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABICAYAAAC0hqYWAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAARm0lEQVR4nO2aaXxV1bnGnz2cMeckJBCUSa8iCNKqyCDKYKUqKKXUC4KAA6DWCdEqLVQFRAWBIlUmUVFwrNQBERFFrSjKPA8hECBkIuOZz9nz3s/9wMXe25xAEqPtB58v+SX7nf5rvVlr7f1bAppQvpFz2brjZWjR7nzk5LSAL8MPURSg6wZqKsqRDFUgWXEEhRs/A7a8ITRl7h8crNu4qezYrQ9ad+wKBV6ENUJwZwCiiJSqgraNnJwAaANqPIpM2Ua2h4ifKMDxvK34fPZDTQLU6CDd7nySXXoPQEabTkg5Lpi2A1EUIbncJ39KAkTpZIJIJAlBEBAIZIC2DZKQBEA0I8j1JbDy9Zdw8JXZPwioUc7jlqxjTvtLIGW3RHnUhtcrwUPCVmOQbRMetwTLcqAoCoLBIEhCFAEHAlKGAEOQQU8AsuQAWina5AQhqjbeXrwY+X+b1qiaGuTUc9RDHDL2ASTc2TiRINz+IGRTQRAGhEQFThzZgwM7NmPXu4vSxm3zq6Hs3vtanNelO4Ss1hAyMmDQgCDK0JImzsrMQmX+Hrx8V88Gw9TbYdifF/AXffpDzmmHyoQFV2Y2HF1FMyOET99+CZuXPdWg5Dm9R3DgTbeiw2W9ENEIX7AFEgkNLkeDFS7ColGXNihevYwHTFzAa24chaQtwhJkiKIMNRHFV6vexo4XHvlBvd1p8H387W33w5XdDlJmEAkT8LotlOzbgDfH9a937DMa9v79TA657feIOx7oho2coA/VJQWYP3MarJ3vN9kSOmr2GrbvdiX0jCzYsg2JCajlh7FgSK965RBP9/Dcq0fxptvvhillwKGInGAGIkX5mDfsF0JTQgDA25MGCQe+eg/ZThSSkQBkN3LO6YRrHl/E+vjLp3s49p4HAbcfgi2hTQsvyg7nY87wS+oEaNd3GLv1+TW6XNodLVudDY/HA1XR4c/wIhaOYM/2zdiz+Wvs//iVtDE+mHGX0DInwI59+iMl+eBQQp9rfouiPXtZsPrF0w5cnQ8HPjCHN9/9MBRLRDgSQq4XuPuK3Drtb31yKS/r/WvQk4HsnObQUgm4JAG2TchuN5KqDgGE2zFgxCox4fq6B2TBym/JNp2RFLzIbebHvg3fYf64PqcFqbO1htx8O2piClKpFM4/uwXeXza/ziBzVu3krwYPRyC3NbJzcxFNxOGWRaSScahKHIapITMzE44ow5R98Oaeg1e/K+bgCdPTts0DN/YRWkg2MiUB8aiJiy7pgYsH3X/aFksL0u/Wh+kOZMEXDCIY9OB4wW6se6n28tqm+0DOX1/EjHM6w3b5EU8pSEajyPbJEMwUvIIO2U6BahyJUDmyMnxocVYmUrYIxdcCg8dOQL/xj6ct8KO3liFTtOASbQRz3Bh00/DTcaRvrXnvf81A+x6QAj5IloO5j47H/g9eqGU7//ND9LW+AIIsQqYD6Cnk79mCd998DUfXvfn/7FteMYTX/24oLu93HSR/JjwBH3TNRDOvjin3j8XhT9+rFX/p5hIiqyVsx0GGpeIPd4xG9fa1aWtOOyMXd+mArEwvVMWALCMtxL3z3qGnRVtIkgiXY0FWqvD3xTMw67ZrhX+FAICqTauE1ybdJsx8eCxauA3EqmrglWVYuoDJjz6drgwcK8qHICmw7CjcPhEDbxiY1i4tyLA77mEspUCGg4DLxsYv1qR17Hfd9Qhk+uEWLAQlAyuWLsInL5754Fe6aa0wtHMzIUAVXsGCx+VCs+atcfNDs2q12Kcr/46ATGRn+WE6Jrr26F5/kA49+sOVmQtHTyJXtlCw6R+1nB6cvYRujwzZ1pHJJKJF+Vi9+OkG7StrVyxHc7cDQRBgu2QMvW1ULZud77wsyLoKt0O4XB506Ni5/iDN27aHIPvgFkW4HBNlhw7Ucrrwol9CFgVIMJAhE39b/nJDGAAA7z0/VSg7evhkHLcLbp83rV2iqhoyBLhECS6Xq/4g553bDi5JgFsW4ZIE5G3+vNZId+rYAW5Zgs/rgamr+PytJY3a5UuLj8EjifBIItweF64eeUet9qquqoDbJUEUCDjEhb1uSLvK1Z6R7GYQSLgkEW45/QgEMnygY8EjAYloqDEMAID9e3bDLeLkSxaItu1a17IpKSkBbAcelxtZmQGc065N2li1jiguAaAoQIAAqY4tyCUKkGFDsAGPJDUa5CSEDbckQXIJkMXaE+tze+CSJYAOaJqwDTNtrFozosTj8LlEuAQBEtKTCCCaB4PwSSLOym3eaJDu3bpCBuGXRfjdLlRXVNayadumFbySBJcAwDJRU11VP5DyE8XwyALcIuF2pR/tksJjyPAAXllCwO/DZVddW68T6r+q/Xnnww3CLwMuUcSh/IO1bM5q3hyiYyPT60FOZgZMRakfSE15KUQ6cIsCvLKIgUNH1ipy/749cDQbjqHDsW2MHDm6wRC/GX47Lzj/v+ARHLhIwNJRsPmbWr3V8YL2CHg9EGwLaiKOg7vX129nLz52DD4RkBwLHreMrpdcXMvpjWWvwOsSEfR5IMsyRt0yGr+8sn+DZmXatGmwTQt+WYJg6Pji009q2XTvdTX9XjdoG/DKAmLhcP0TdO8/mBUaeaxG5/GQwgOFRWkLfGXFGh6L6Dwa1lhQGefuo2Vsf2nPesF8uWk3D5aGWKWSZRGTRdWptH4vLH2dh0NJHlfIgrDFZxa81rAW3ppXzPKYyRMRhdUJhb369asVoO91Q1idIkvjJkvjJsviBsviBh+YPLXOZBdf3o+b9xawRiHLkzZLQiproiafnvV8Wp9tu/NYHNNYkiJLYhZ79B3YMJBps55nwiIrowrLayL88JOP0waY8McpLK5JMWqTNTpZHEowapLb8g7z3Y8/48QpT3LSEzM4Z8ESbtp9gCrJsOqwJKSwOuWwKqbz22+3p409YsRIxpI6TyRMFkd17jta3vAFpVefaxlN2gzFNdbEklQsg92uuDxtoKkznmVJOMmKhE6NZEVMYUjVGTdshlIayyNx6iSjmsmKSIoRxWJ5VGVFTOOWnfvrLG7Pnn2MJXVWJg0mSM5+7qVGrYx4b+Un1GwymtKo2ibXfvlZnYFuHnMH9x8pZEQ1mLTIuGGxKp5i0nIYV01WRxNUTDKmGIwpBg2ST8yYXWe8l5e9ykRSYUIxmXDI8pjROAgAuLr/AEaTKk2SkVSCJm1eeVXv0wac+tRMHikqZVU0+r9+KaqmQ4tkNKmyMhTlBx+tYfdep4+TUBUqqk7DJqO6w0efmnNGkNMe9g7kHeaFnTvAtHVIkoTS0lKc3+68Mx4Qe15+BXNbNke3bl0hCBKKi4tRXFSKL79Yd0bfvQf38RedLoIAEapmoby6Gu3Paf3DPj316tWLDkmbFh3aJE0uWDiv8dN8Bi1ZsoSKotBxLJI2FSXZdLnmzp1D01KpGynG4jUkNfbu3bXJYW4dfQtNQ6OhqyRNkiafnVv7rfEH6cjRfJImDTPFeLyKGzbU/Y/fWB08uIummSCpUVUjPHBgR9PPfO8+PZlSotSNOEmFZJLTpj3SZIkO5G2kZYdIJqiq1TTN2I/Wvlj6yiIaVoyGEaZlRxgKH2+SZLPnTGZKLSRZw1jiGDW9kg8+WPtNsUlVUpZPMs5EspSGWc1Dh9PvyvXV1KkTqepF1K1CptRCKloJ33hz4Y8LAQA3Dr2Oml5Nyw5RN6qoGxU8dHBzoxLffuvvqKkl1K0iGnYxU2oRi4p3//gQp7Rg4UySUSpqOTWjjKpayFBNfoMLKC3ZRcc5QdMuYyxxlNFY4U8HcUpTpk6gblRRVYqpa0doaIXc8l39V7K8vRvpWCVUUoeoKsW07AhvuKH2Cfsn0WOPT6Chl1FV8mkoh0jjBHdu++KMxVSU5TFUnUfy5CCkEqW8996x/x6IU1r5wVKmYnmkc5TxyE6mknlct+71OosqKNjAaGQPySJGqrbS0gr51PQ//nshTmnrxhVUEztpm3uZSG5nKrWPixfXfrlaseJ5RmO7GItsJnmQSnwHZ0z//X8GxCkVHVtN09hORd3GRGIHLes4n5j+zw1z2hMPMxzeS8s5SDp7GQmv585ty/+zIK6/9lzaxibGo+upa9tpGPu5Zcv7tYqsqNjOSGQLVWUrbXMrDWUj7xzb6z8HprxsDcnvGIt8xURsK48Xrv++uJtu7svn5j/6/e+R8C5Gw5sYql5Hy/iaidg/OG7cdf9+mN27PmQq+QWj4VV0rO1UEzs5aMBF3xdWVr6eidQOTps+igDwm0G/pKHup6ZspK1/RlX5hLH4Vo4YcfJFa/qTd3Drtnepann8ZsNr/MPDQ+sN2egXlm3bl7NTl7ZwqMIteWCqbsx/7mU8/sRbAgAUHv6Qrc/JQVKJQ3b78Py81zB16uvCmFuu4iuvPgdVOwSLJkTxLOiGDMcx4fFKMI04gpleKIoCryeIr7/eg+sH/OmMdZ72wkBdWrZ8Mi/q0hKiGIMgSYinLDzzzLzvIY7nr2Ig4EDXa+Dzm8jwA/fePwaTJw/j8je/FkbcNBxuOROZwWwAKTRr5sAwqhEMED6fDVWtRiAAaFoYva+4DDOfuvOMM9NgkGeeuYPXD7wSoqjBNE04lg9rPvoGz8z+SACAb75cwMxsoEWrACSXBtPSEE+EIMoKHp82HpP/dB3fW1Ug3Hf3Y4hWAYAGw6pEZqaMVDIOTTHhkbNg6TLcchYMnbj0kq5nrKtBIJMm3cgxY36HrCwXZFmGoRKbN+7AuDGzBACYN+dO9u1/OSDoqK4sgeOIcMtBADJcbsCxExg/YQymPT6AS9/YJSxe8Cq8ngzEY0kYmgmPy4sPV36MIb8dimRCQyqVgs/rQqt2LRs63nVr9OgeDIXX0DDXMhr9O4uPLWNB/j8/Yc6ZO5pVlatZVbmChvoxqyvf44b1Jz/5FBd/yGhqNasjb5H8lLHoSk6ZOIgAMPmRPlSSa2mkvuTCv44gAGzdOJO6voqJ5AeMxVZzx65Xz9hap72L8n81ZMhVkF0pJJMp+N1ZSDGIDp2GCQBw592Xcdy4/4bXayAZT4FOAJGQib6/miQAwKgR9+Cl5XPQrl0QFdUlkCnjz489gIJDBzjr2W8Fn2cRvT4PJk15X9j4zVPs1PkChMJV8Hh9cLmy8Oyzc89YX71XrVD4HXp8GkxNhaX5kNtqjAAAv776bH6w5lVoehFAHRL8iFQ66ND5nlqxjxW+xZzmMvxuEZZhQ3R8uOfux7B8xX4BAPbvXMiOnduiuuYEzmrdCrG4ivyDJ9D7yolNt2q53AI0PQ5Ag2Wr3//9hcWLAceE2+1AkjVkN3Nj9doP08a4777JsAwPEikDpqVCN6OYv3AWZk0fzM9WT+L5HVojkYzCHwwgFE4g70BxvSAaBFJZEYMkumBZGprnerF703MEgGlTpsLUCBEiJMFGJHYCo28dgofG96l9AWBtifDHiU/DMv0AvHAEA5QrMOaua9Cj93mwGIYNE4AXR/LD6NtnctPdoDulRydfy4ceGQ5RCgMOIQstUXQsgkt6nLwKmJ8/lS1beSHJAJwA3FJ7+PyD0sa/+aZOfGnJX2AxDIdhZGb7YegOQmENbnc2SoqS6NlzfIM263rPyMxZnwt5B8rhDzSHBQWaXYgLOvuRt+evBIBOnZ4UDh88Bsc2kUyFEI4W4a67uqVdbd55N1+4994/Ixx2IElBVFbFkUgSwUBrbN9a2GAIoBFHlNfeHMHBQ3rCsePQFAsu52yEqxPo3PVR4dm/XMhbbhuGFrltUFkpYNHCjzBjRvrbPKf04IPdeFGXDigrrcK3G3bhH19Ffvx7v6f0/MIBvOX238AjOaAmgLYD00rBdgyIsgDT9kEU2+LhP8zDW3/b0aR3H+tSo5NMnNiT4+8fiSyfA9uOQhAc+P1+uDyZiMdl7DsQx1X9J/0kEEAjD40AMHfuVuHF+Z8D9EESCdmlQTdjCNWEoaaIl198pynrPKN+8IjdPvxcDhveB737XoqyE5WoqbRw9cDnfrKZ+Fk/62f9rJ/1s5pC/wMhI94tVxa9JQAAAABJRU5ErkJggg==" alt="Logo" style="height:72px; width:auto;">
+            <p class="text-white font-black" style="font-size:2rem; line-height:1.15; font-family:'Montserrat',sans-serif;">Create an<br>account</p>
+        </div>
+
+        <!-- Tabs — same style as Login -->
+        <div class="flex rounded-lg overflow-hidden border border-white/20">
+            <button class="flex-1 py-2.5 text-sm font-bold transition bg-white text-black">Sign Up</button>
+            <button onclick="location.href='Login.html'" class="flex-1 py-2.5 text-sm font-bold transition bg-transparent text-white/70">Log In</button>
+        </div>
+
+        <!-- Social -->
+        <div>
+            <p class="text-white/50 text-xs mb-3">Sign Up with Open account</p>
+            <div class="flex gap-4">
+                <div class="social-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg></div>
+                <div class="social-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
+                <div class="social-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+            </div>
+        </div>
+
+        <div class="divider">or</div>
+
+        <!-- Form -->
+        <div class="flex flex-col gap-3">
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>
+                <input type="email" id="emailInput" placeholder="Email" class="input-field pl-9">
+            </div>
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <input type="text" id="usernameInput" placeholder="Username" class="input-field pl-9">
+            </div>
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+                <input type="password" id="passwordInput" placeholder="Password" class="input-field pl-9 pr-10" oninput="checkStrength(this.value)">
+                <button onclick="togglePassword('passwordInput','eye1')" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition">
+                    <svg id="eye1" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            </div>
+            <div id="strengthWrap" class="hidden">
+                <div class="flex gap-1 mb-1">
+                    <div id="s1" class="strength-bar flex-1 bg-white/10 h-1 rounded"></div>
+                    <div id="s2" class="strength-bar flex-1 bg-white/10 h-1 rounded"></div>
+                    <div id="s3" class="strength-bar flex-1 bg-white/10 h-1 rounded"></div>
+                    <div id="s4" class="strength-bar flex-1 bg-white/10 h-1 rounded"></div>
+                </div>
+                <p id="strengthLabel" class="text-xs text-white/40"></p>
+            </div>
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+                <input type="password" id="confirmInput" placeholder="Confirm Password" class="input-field pl-9 pr-10" oninput="checkMatch()">
+                <button onclick="togglePassword('confirmInput','eye2')" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition">
+                    <svg id="eye2" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            </div>
+            <p id="matchMsg" class="text-xs hidden"></p>
+        </div>
+
+        <!-- Terms -->
+        <label class="flex items-start gap-2 cursor-pointer text-xs text-white/60">
+            <input type="checkbox" id="agreeCheck" class="mt-0.5 w-3 h-3 flex-shrink-0">
+            I agree to the <a href="#" class="text-[#4CB7FF] hover:underline mx-1">Terms of Service</a> and <a href="#" class="text-[#4CB7FF] hover:underline ml-1">Privacy Policy</a>
+        </label>
+
+        <!-- Submit — same black button style as Login -->
+        <button onclick="handleSignup()" class="w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-white hover:text-black transition text-sm">
+            Create Account
+        </button>
+
+        <p class="text-center text-xs text-white/50">
+            Already have an account?
+            <a href="Login.html" class="text-[#4CB7FF] font-semibold hover:underline ml-1">Log In</a>
+        </p>
+    </div>
+
+    <!-- RIGHT: Hero — same font size as Login -->
+    <div class="flex flex-col gap-4 max-w-[55%]">
+        <h1 class="text-white font-black leading-none" style="font-size: clamp(3.5rem, 7vw, 7rem);">
+            Experience a<br>Breathtaking<br>Adventure
+        </h1>
+    </div>
+</main>
+
+<script>
+    function togglePassword(inputId, iconId) {
+        const inp = document.getElementById(inputId);
+        const isHidden = inp.type === 'password';
+        inp.type = isHidden ? 'text' : 'password';
+        document.getElementById(iconId).innerHTML = isHidden
+            ? '<path d="M17.94 17.94A10 10 0 0 1 12 20c-7 0-11-8-11-8a18 18 0 0 1 5.06-5.94M9.9 4.24A9 9 0 0 1 12 4c7 0 11 8 11 8a18 18 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>'
+            : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    }
+    function checkStrength(val) {
+        const wrap = document.getElementById('strengthWrap');
+        const label = document.getElementById('strengthLabel');
+        const bars = ['s1','s2','s3','s4'].map(id => document.getElementById(id));
+        if (!val) { wrap.classList.add('hidden'); return; }
+        wrap.classList.remove('hidden');
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        const colors = ['#ef4444','#f97316','#eab308','#22c55e'];
+        const labels = ['Weak','Fair','Good','Strong'];
+        bars.forEach((b,i) => { b.style.background = i < score ? colors[score-1] : 'rgba(255,255,255,0.1)'; });
+        label.textContent = labels[score-1] || '';
+        label.style.color = colors[score-1] || 'rgba(255,255,255,0.4)';
+    }
+    function checkMatch() {
+        const pwd = document.getElementById('passwordInput').value;
+        const conf = document.getElementById('confirmInput').value;
+        const msg = document.getElementById('matchMsg');
+        if (!conf) { msg.classList.add('hidden'); return; }
+        msg.classList.remove('hidden');
+        if (pwd === conf) { msg.textContent = '✓ Passwords match'; msg.style.color = '#22c55e'; }
+        else { msg.textContent = '✗ Passwords do not match'; msg.style.color = '#ef4444'; }
+    }
+    function handleSignup() {
+        const email = document.getElementById('emailInput').value.trim();
+        const username = document.getElementById('usernameInput').value.trim();
+        const pwd = document.getElementById('passwordInput').value;
+        const conf = document.getElementById('confirmInput').value;
+        const agree = document.getElementById('agreeCheck').checked;
+        if (!email || !username || !pwd || !conf) { alert('Please fill in all fields.'); return; }
+        if (pwd !== conf) { alert('Passwords do not match.'); return; }
+        if (!agree) { alert('Please agree to the Terms of Service.'); return; }
+        alert('Account created! Redirecting to login...');
+    }
+</script>
+</body>
+</html>
