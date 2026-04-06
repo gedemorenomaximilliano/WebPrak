@@ -283,5 +283,16 @@ img {
     justify-content: center;
     height: 50vh;
 }
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.one {
+    padding-top: 70px;
+}
 
 
