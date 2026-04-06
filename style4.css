@@ -672,4 +672,17 @@ img {
     .trip-info p {
         white-space: normal;
     }
+    
+    /* Fix Navbar di halaman transaksi */
+.transaksi-page header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    }
+
+    .transaksi-page .transaction-section {
+    padding-top: 80px;
+    }
 }
