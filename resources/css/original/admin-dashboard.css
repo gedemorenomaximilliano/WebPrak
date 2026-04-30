@@ -1,0 +1,49 @@
+.stat-card {
+    min-height: 280px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.stat-card h3 {
+    color: white;
+    opacity: 0.9;
+}
+
+.stat-card p.text-5xl {
+    letter-spacing: -1px;
+}
+
+/* Modal animation */
+#package-modal {
+    animation: fadeIn 0.3s ease-out;
+}
+
+#package-modal > div {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Table styling adjustments */
+th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+td {
+    vertical-align: middle;
+}
+
+/* Custom button styles */
+.btn-action {
+    @apply p-2 rounded-lg transition-all duration-300;
+}

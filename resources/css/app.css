@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'original/base.css';
+@import 'original/style1.css';
+@import 'original/style2.css';
+@import 'original/style3.css';
+@import 'original/style4.css';
+@import 'original/style5.css';
+@import 'original/style6.css';
+@import 'original/dashboard.css';
+@import 'original/admin-dashboard.css';

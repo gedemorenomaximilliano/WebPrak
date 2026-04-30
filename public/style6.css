@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+}
+
+.glass-card {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Specific styling for the large tour title text shadow for better readability */
+h2.text-white {
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+/* Custom scrollbar for the glass card if content overflows */
+.glass-card::-webkit-scrollbar {
+    width: 6px;
+}
+.glass-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+.glass-card::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
