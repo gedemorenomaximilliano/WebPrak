@@ -76,7 +76,7 @@
                     <h2 id="modal-title" class="text-3xl font-bold">Add New Package</h2>
                     <button onclick="hideModal()" class="text-white/50 hover:text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                 </div>
-                <form id="package-form" action="{{ route('admin.packages.store') }}" method="POST" class="space-y-6">
+                <form id="package-form" action="{{ route('admin.packages.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
                     <input type="hidden" id="method-field" name="_method" value="POST">
                     <div class="grid grid-cols-2 gap-6">
@@ -95,8 +95,8 @@
                             <input type="number" name="price" id="package-price" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-sm font-semibold text-white/50">Image Filename</label>
-                            <input type="text" name="image" id="package-image" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition">
+                            <label class="text-sm font-semibold text-white/50">Image</label>
+                            <input type="file" name="image" id="package-image" accept="image/*" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-white/10 file:text-white file:font-bold hover:file:bg-white/20 file:cursor-pointer text-white/60">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-6">
@@ -114,10 +114,15 @@
                         <textarea name="description" id="package-desc" required rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition"></textarea>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-sm font-semibold text-white/50">Itinerary (JSON Array)</label>
-                        <textarea name="itinerary" id="package-itinerary" required rows="2" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition"></textarea>
+                        <label class="text-sm font-semibold text-white/50">Itinerary <span class="text-white/30 font-normal">(one per line, format: <code>time - description</code>)</span></label>
+                        <textarea name="itinerary" id="package-itinerary" required rows="4" placeholder="07:00 - Pick up from hotel&#10;08:00 - Visit Ijen Crater&#10;12:00 - Lunch at local restaurant" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#7EA6C4] transition"></textarea>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" name="is_popular" id="package-popular" value="1" class="w-5 h-5 rounded bg-white/5 border border-white/10 accent-[#7EA6C4]">
+                        <label for="package-popular" class="text-sm font-semibold text-white/50 cursor-pointer">Mark as Popular</label>
                     </div>
                     <button type="submit" class="w-full bg-white text-black font-bold py-4 rounded-2xl hover:bg-[#7EA6C4] hover:text-white transition duration-300">SAVE PACKAGE</button>
+                    <div id="current-image" class="hidden text-xs text-white/40 text-center">Current image: <span id="current-image-name"></span></div>
                 </form>
             </div>
         </div>
@@ -129,6 +134,7 @@
             document.getElementById('package-form').action = "{{ route('admin.packages.store') }}";
             document.getElementById('method-field').value = "POST";
             document.getElementById('package-form').reset();
+            document.getElementById('current-image').classList.add('hidden');
             document.getElementById('package-modal').classList.remove('hidden');
         }
 
@@ -144,21 +150,28 @@
             document.getElementById('package-name').value = package.name;
             document.getElementById('package-destination').value = package.destination;
             document.getElementById('package-price').value = package.price;
-            document.getElementById('package-image').value = package.image;
+            // Don't set file input value (security restriction), but show current filename next to it
             document.getElementById('package-start-date').value = package.start_date;
             document.getElementById('package-end-date').value = package.end_date;
             document.getElementById('package-desc').value = package.description;
-            document.getElementById('package-itinerary').value = typeof package.itinerary === 'string' ? package.itinerary : JSON.stringify(package.itinerary);
+            var itin = typeof package.itinerary === 'string' ? (function(){ try { return JSON.parse(package.itinerary); } catch(e) { return []; } })() : package.itinerary;
+            document.getElementById('package-itinerary').value = Array.isArray(itin) ? itin.join('\n') : itin;
+            document.getElementById('package-popular').checked = package.is_popular;
+            
+            var imgLabel = document.getElementById('current-image');
+            var imgName = document.getElementById('current-image-name');
+            imgName.textContent = package.image;
+            imgLabel.classList.remove('hidden');
             
             document.getElementById('package-modal').classList.remove('hidden');
         }
 
-        window.onclick = function(event) {
+        document.addEventListener('click', function(event) {
             const modal = document.getElementById('package-modal');
             if (event.target == modal) {
                 hideModal();
             }
-        }
+        });
     </script>
 </body>
 </html>

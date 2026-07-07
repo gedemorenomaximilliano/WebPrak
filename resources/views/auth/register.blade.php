@@ -58,6 +58,16 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-500 text-xs" />
             </div>
 
+            <div class="relative">
+                <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="Phone Number (optional)" class="input-field bg-white/20 text-white p-3 rounded-lg border border-white/30 w-full pl-4">
+                <x-input-error :messages="$errors->get('phone')" class="mt-2 text-red-500 text-xs" />
+            </div>
+
+            <div class="relative">
+                <textarea name="address" placeholder="Address (optional)" rows="2" class="input-field bg-white/20 text-white p-3 rounded-lg border border-white/30 w-full pl-4">{{ old('address') }}</textarea>
+                <x-input-error :messages="$errors->get('address')" class="mt-2 text-red-500 text-xs" />
+            </div>
+
             <!-- Submit -->
             <button type="submit" class="w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-white hover:text-black transition text-sm mt-4">
                 Create Account

@@ -46,6 +46,10 @@
                                     <label class="text-xs font-bold opacity-60 mb-2 block uppercase tracking-wider">Phone Number *</label>
                                     <input type="text" name="phone" id="phone" placeholder="08..." class="w-full bg-[#1a3a4a]/60 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#4CB7FF]" required>
                                 </div>
+                                <div>
+                                    <label class="text-xs font-bold opacity-60 mb-2 block uppercase tracking-wider">Travel Date *</label>
+                                    <input type="date" name="travel_date" id="travelDate" value="{{ now()->addDays(7)->format('Y-m-d') }}" class="w-full bg-[#1a3a4a]/60 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#4CB7FF]" required>
+                                </div>
                             </div>
                         </div>
 
@@ -105,8 +109,8 @@
                                 </div>
                                 <div class="flex flex-col gap-4 items-end">
                                     <select name="pax_count" id="paxCount" class="bg-white/10 border border-white/20 rounded-full px-4 py-1 text-sm focus:outline-none appearance-none">
-                                        <option value="1" class="bg-[#1a3a4a]">1</option>
-                                        <option value="2" class="bg-[#1a3a4a]" selected>2</option>
+                                        <option value="1" class="bg-[#1a3a4a]" selected>1</option>
+                                        <option value="2" class="bg-[#1a3a4a]">2</option>
                                         <option value="3" class="bg-[#1a3a4a]">3</option>
                                         <option value="4" class="bg-[#1a3a4a]">4</option>
                                         <option value="5" class="bg-[#1a3a4a]">5</option>
@@ -123,21 +127,27 @@
                             </div>
 
                             <div class="space-y-6 border-t border-white/10 pt-8 mt-auto">
+                                @php
+                                    $initialSubtotal = $package->price;
+                                    $initialTax = $initialSubtotal * 0.1;
+                                    $initialDiscount = $initialSubtotal > 1000000 ? 50000 : 0;
+                                    $initialTotal = $initialSubtotal + $initialTax - $initialDiscount;
+                                @endphp
                                 <div class="flex justify-between font-semibold">
                                     <span class="opacity-60">Subtotal</span>
-                                    <span id="subtotal">Rp0,-</span>
+                                    <span id="subtotal">Rp{{ number_format($initialSubtotal, 0, ',', '.') }},-</span>
                                 </div>
                                 <div class="flex justify-between font-semibold">
                                     <span class="opacity-60">Taxes (10%)</span>
-                                    <span id="taxes">Rp0,-</span>
+                                    <span id="taxes">Rp{{ number_format($initialTax, 0, ',', '.') }},-</span>
                                 </div>
                                 <div class="flex justify-between font-semibold">
                                     <span class="opacity-60">Discount</span>
-                                    <span id="discount">Rp0,-</span>
+                                    <span id="discount">Rp{{ number_format($initialDiscount, 0, ',', '.') }},-</span>
                                 </div>
                                 <div class="flex justify-between text-2xl font-black pt-4">
                                     <span>Total</span>
-                                    <span id="total">Rp0,-</span>
+                                    <span id="total">Rp{{ number_format($initialTotal, 0, ',', '.') }},-</span>
                                 </div>
                             </div>
 

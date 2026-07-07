@@ -50,6 +50,10 @@
             <!-- Top Bar -->
             <div class="flex justify-between items-center p-10">
                 <div class="flex items-center gap-4">
+                    <a href="{{ route('home') }}" class="flex items-center gap-2 text-white/50 hover:text-white transition px-3 py-2 rounded-2xl hover:bg-white/5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span class="text-sm font-semibold">Home</span>
+                    </a>
                     <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center border-4 border-white/20">
                         <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                     </div>
@@ -59,6 +63,16 @@
 
             <!-- Views Container -->
             <div class="px-10 pb-10">
+                @if(!$profileComplete)
+                    <div class="mb-8 p-6 bg-yellow-500/10 border border-yellow-500/30 rounded-[2rem] flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-yellow-400">Complete Your Profile</h3>
+                            <p class="text-white/60 text-sm">Add your phone number and address to start making bookings.</p>
+                        </div>
+                        <a href="{{ route('profile.edit') }}" class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-400 transition whitespace-nowrap">Complete Now</a>
+                    </div>
+                @endif
+
                 <!-- Dashboard View -->
                 <div id="view-dashboard" class="view active">
                     <div class="mb-10">
@@ -223,11 +237,13 @@
             document.getElementById('qrModalTitle').textContent = packageName;
             document.getElementById('qrCodeText').textContent = code;
             
+            var verifyUrl = '{{ url('/tickets/verify') }}/' + code;
+            
             const qrContainer = document.getElementById('qrcode');
             qrContainer.innerHTML = ''; // Clear previous
             
             qrCodeInstance = new QRCode(qrContainer, {
-                text: code,
+                text: verifyUrl,
                 width: 200,
                 height: 200,
                 colorDark : "#000000",

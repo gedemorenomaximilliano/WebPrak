@@ -60,7 +60,7 @@
     <div class="max-w-5xl mx-auto pt-40 pb-20 px-6">
         <div class="flex items-baseline justify-between mb-12">
             <h1 class="text-5xl font-black tracking-tight">Shopping <span class="text-[#4CB7FF]">Cart</span></h1>
-            <p class="text-white/40 font-medium">{{ count($cart) }} Items selected</p>
+            <p class="text-white/40 font-medium">{{ $cartItems->count() }} Items selected</p>
         </div>
         
         @if(session('success'))
@@ -73,22 +73,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <!-- Items List -->
             <div class="lg:col-span-2 space-y-6">
-                @forelse($cart as $id => $details)
-                    <div class="glass-card p-6 rounded-[2.5rem] flex items-center justify-between item-card cart-item" data-id="{{ $id }}">
+                @forelse($cartItems as $cartItem)
+                    <div class="glass-card p-6 rounded-[2.5rem] flex items-center justify-between item-card cart-item" data-id="{{ $cartItem->package_id }}">
                         <div class="flex items-center gap-8">
                             <div class="relative group">
-                                <img src="{{ asset('images/' . $details['image']) }}" class="w-28 h-28 rounded-3xl object-cover shadow-2xl transition duration-500 group-hover:scale-105">
+                                <img src="{{ asset('images/' . $cartItem->package->image) }}" class="w-28 h-28 rounded-3xl object-cover shadow-2xl transition duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 rounded-3xl bg-black/20 group-hover:bg-transparent transition duration-500"></div>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-extrabold mb-1">{{ $details['name'] }}</h3>
-                                <p class="text-white/40 text-sm font-bold uppercase tracking-widest mb-4">{{ $details['destination'] }}</p>
+                                <h3 class="text-2xl font-extrabold mb-1">{{ $cartItem->package->name }}</h3>
+                                <p class="text-white/40 text-sm font-bold uppercase tracking-widest mb-4">{{ $cartItem->package->destination ?? '' }}</p>
                                 
                                 <div class="flex items-center gap-4 bg-black/20 w-fit p-1 rounded-xl border border-white/5">
                                     <button class="qty-btn minus-qty">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 12H4"></path></svg>
                                     </button>
-                                    <input type="number" value="{{ $details['quantity'] }}" class="bg-transparent text-center font-bold w-10 focus:outline-none update-cart pointer-events-none" min="1">
+                                    <input type="number" value="{{ $cartItem->quantity }}" class="bg-transparent text-center font-bold w-10 focus:outline-none update-cart pointer-events-none" min="1">
                                     <button class="qty-btn plus-qty">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
                                     </button>
@@ -98,7 +98,7 @@
                         
                         <div class="text-right">
                             <p class="text-xs text-white/30 font-bold uppercase mb-1">Subtotal</p>
-                            <p class="font-black text-2xl text-[#4CB7FF] mb-6">IDR {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</p>
+                            <p class="font-black text-2xl text-[#4CB7FF] mb-6">IDR {{ number_format($cartItem->package->price * $cartItem->quantity, 0, ',', '.') }}</p>
                             <button class="text-white/20 hover:text-red-500 transition-colors duration-300 flex items-center gap-2 ml-auto group remove-from-cart">
                                 <span class="text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">REMOVE</span>
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -117,7 +117,7 @@
             </div>
 
             <!-- Order Summary -->
-            @if(count($cart) > 0)
+            @if($cartItems->count() > 0)
                 <div class="lg:col-span-1">
                     <div class="glass-card p-10 rounded-[3rem] sticky top-40 border-white/10">
                         <h2 class="text-2xl font-black mb-8">Order Summary</h2>

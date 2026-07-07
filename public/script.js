@@ -11,9 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const descEl        = document.getElementById('slide-desc');
 
     const getCardEls = () => document.querySelectorAll('.package-card');
+    const cardsRow = document.getElementById('cardsRow');
+
+    const CARD_WIDTH = 296; // 280px card + 16px gap
 
     let current = 0;
     let activeBgIdx = 0; // Which of the 2 bg divs is visible
+
+    function positionCards(idx) {
+        getCardEls().forEach((card, i) => {
+            card.style.left = `${i * CARD_WIDTH - idx * CARD_WIDTH}px`;
+        });
+    }
 
     // Mapping for high-res landscape backgrounds
     const bgMap = {
@@ -68,19 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
             descEl.classList.remove('text-fade');
         }, 300);
 
-        // Cards swap animation
-        const cardEls = getCardEls();
-        cardEls.forEach((card, i) => {
-            card.classList.add('exiting');
-            setTimeout(() => {
-                card.classList.remove('exiting');
-                card.classList.add('entering');
-                setTimeout(() => card.classList.remove('entering'), 600);
-            }, 300 + i * 70);
-        });
-
         // Set active card to match slide index
         setActiveCard(idx);
+
+        // Position cards for the new index
+        positionCards(idx);
 
         current = idx;
     }
@@ -117,6 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Init — set card 0 as active on load
+    getCardEls().forEach(c => c.style.transition = 'none');
     setActiveCard(0);
+    positionCards(0);
+    void document.body.offsetHeight;
+    getCardEls().forEach(c => c.style.transition = '');
 
 });

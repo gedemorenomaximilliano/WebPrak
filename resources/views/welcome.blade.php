@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('base.css') }}">
     <link rel="stylesheet" href="{{ asset('style1.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{ asset('auth.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         window.packagesData = @json($packages);
@@ -124,10 +123,12 @@
 
                 <!-- package cards -->
                 <div class="flex items-center gap-6">
-                    <div class="cards-row cards-anim" id="cardsRow">
-                        @foreach($packages as $index => $package)
-                            <x-destination-card :package="$package" :active="$loop->first" :index="$index" />
-                        @endforeach
+                    <div class="cards-wrapper" id="cardsWrapper">
+                        <div class="cards-row" id="cardsRow">
+                            @foreach($packages as $index => $package)
+                                <x-destination-card :package="$package" :active="$loop->first" :index="$index" />
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 

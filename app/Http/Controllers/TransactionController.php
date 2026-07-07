@@ -35,14 +35,18 @@ class TransactionController extends Controller
         $request->validate([
             'package_id' => 'required|exists:packages,id',
             'pax_count' => 'required|integer|min:1',
-            'payment_method' => 'required|string',
+            'payment_method' => 'required|in:BCA,Mandiri,E-Wallet,BRIVA',
             'phone' => 'required|string',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'email' => 'required|email',
+            'travel_date' => 'nullable|date|after:today',
         ]);
 
         $package = Package::findOrFail($request->package_id);
+
+        $amount = $package->price * $request->pax_count;
+        $tax = $amount * 0.1;
 
         $transaction = Transaction::create([
             'user_id' => Auth::id(),
@@ -54,11 +58,11 @@ class TransactionController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'status' => 'success',
-            'amount' => $package->price * $request->pax_count,
-            'travel_date' => now()->addDays(7),
+            'amount' => $amount + $tax,
+            'travel_date' => $request->travel_date ?? now()->addDays(7),
         ]);
 
-        Ticket::create([
+        Ticket::createWithRetry([
             'ticket_code' => 'TKT-' . strtoupper(Str::random(8)),
             'transaction_id' => $transaction->id,
             'status' => 'active',

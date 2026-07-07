@@ -7,7 +7,13 @@
     <div class="card-content">
         <h3 class="card-title">{{ $package->name }}</h3>
         <p class="card-desc">{{ $package->description }}</p>
-        <p class="text-xs text-gray-500 mt-2">Available: {{ $package->start_date ? \Carbon\Carbon::parse($package->start_date)->format('M d') : 'N/A' }} - {{ $package->end_date ? \Carbon\Carbon::parse($package->end_date)->format('M d') : 'N/A' }}</p>
+        @php
+            $dateFrom = $package->start_date ?? $package->available_from;
+            $dateTo   = $package->end_date ?? $package->available_until;
+        @endphp
+        @if ($dateFrom && $dateTo)
+            <p class="text-xs text-gray-500 mt-2">Available: {{ \Carbon\Carbon::parse($dateFrom)->format('M d') }} - {{ \Carbon\Carbon::parse($dateTo)->format('M d') }}</p>
+        @endif
         <div class="card-footer">
             <p class="card-price">IDR {{ number_format($package->price, 0, ',', '.') }}<span>/ pax</span></p>
             <div class="card-actions">

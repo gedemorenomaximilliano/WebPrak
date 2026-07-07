@@ -1,23 +1,18 @@
-.stat-card {
-    min-height: 280px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+/* ── Stat Cards ── */
+.glass-card {
+    transition: transform 0.3s ease;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
+.glass-card:hover {
+    transform: translateY(-2px);
 }
 
-.stat-card h3 {
-    color: white;
-    opacity: 0.9;
+/* ── Chart Containers ── */
+canvas {
+    max-width: 100%;
 }
 
-.stat-card p.text-5xl {
-    letter-spacing: -1px;
-}
-
-/* Modal animation */
+/* ── Modal Animation ── */
 #package-modal {
     animation: fadeIn 0.3s ease-out;
 }
@@ -31,19 +26,41 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Table styling adjustments */
-th {
+/* ── Table Styling ── */
+table th {
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
     color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
 }
 
-td {
+table td {
     vertical-align: middle;
 }
 
-/* Custom button styles */
+/* ── Custom Button Styles ── */
 .btn-action {
-    @apply p-2 rounded-lg transition-all duration-300;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
 }

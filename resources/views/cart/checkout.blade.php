@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('style4.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 </head>
 <body class="font-[Montserrat] bg-[#1a3a4a] text-white min-h-screen overflow-x-hidden">
     @include('layouts.navigation_public')
@@ -43,6 +44,10 @@
                                     <label class="text-xs font-bold opacity-60 mb-2 block uppercase tracking-wider">Phone Number *</label>
                                     <input type="text" name="phone" placeholder="08..." class="w-full bg-[#1a3a4a]/60 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#4CB7FF]" required>
                                 </div>
+                                <div>
+                                    <label class="text-xs font-bold opacity-60 mb-2 block uppercase tracking-wider">Travel Date *</label>
+                                    <input type="date" name="travel_date" value="{{ now()->addDays(7)->format('Y-m-d') }}" class="w-full bg-[#1a3a4a]/60 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-[#4CB7FF]" required>
+                                </div>
                             </div>
                         </div>
 
@@ -70,14 +75,14 @@
                         <div class="bg-white/5 rounded-[2rem] p-8 border border-white/5">
                             <h2 class="text-xl font-bold mb-8">Summary</h2>
                             <div class="space-y-6 mb-10 max-h-[400px] overflow-y-auto pr-4">
-                                @foreach($cart as $id => $details)
+                                @foreach($cartItems as $item)
                                     <div class="flex gap-4 items-center">
-                                        <img src="{{ asset('images/' . $details['image']) }}" class="w-16 h-16 rounded-xl object-cover">
+                                        <img src="{{ asset('images/' . $item->package->image) }}" class="w-16 h-16 rounded-xl object-cover">
                                         <div class="flex-grow">
-                                            <h4 class="font-bold">{{ $details['name'] }}</h4>
-                                            <p class="text-xs opacity-60">Qty: {{ $details['quantity'] }}</p>
+                                            <h4 class="font-bold">{{ $item->package->name }}</h4>
+                                            <p class="text-xs opacity-60">Qty: {{ $item->quantity }}</p>
                                         </div>
-                                        <p class="font-bold text-sm">IDR {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</p>
+                                        <p class="font-bold text-sm">IDR {{ number_format($item->package->price * $item->quantity, 0, ',', '.') }}</p>
                                     </div>
                                 @endforeach
                             </div>
@@ -89,15 +94,15 @@
                                 </div>
                                 <div class="flex justify-between font-semibold">
                                     <span class="opacity-60">Taxes (10%)</span>
-                                    <span>IDR {{ number_format($total * 0.1, 0, ',', '.') }}</span>
+                                    <span>IDR {{ number_format($tax, 0, ',', '.') }}</span>
                                 </div>
                                 <div class="flex justify-between text-2xl font-black pt-4 border-t border-white/10">
                                     <span>Total</span>
-                                    <span>IDR {{ number_format($total * 1.1, 0, ',', '.') }}</span>
+                                    <span>IDR {{ number_format($grandTotal, 0, ',', '.') }}</span>
                                 </div>
                             </div>
 
-                            <button type="submit" class="w-full bg-white text-black py-5 rounded-3xl mt-10 font-extrabold text-xl hover:bg-white/80 transition-all duration-300">
+                            <button type="submit" id="pay-button" class="w-full bg-white text-black py-5 rounded-3xl mt-10 font-extrabold text-xl hover:bg-white/80 transition-all duration-300">
                                 Confirm Booking
                             </button>
                         </div>
@@ -106,5 +111,54 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var payBtn = document.getElementById('pay-button');
+            payBtn.disabled = true;
+            payBtn.textContent = 'Processing...';
+
+            var form = this;
+            var formData = new FormData(form);
+
+            fetch('{{ route('cart.checkout.process') }}', {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json',
+                },
+                body: formData
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.snap_token) {
+                    snap.pay(data.snap_token, {
+                        onSuccess: function() {
+                            window.location.href = '{{ route('payment.success', '__ID__') }}'.replace('__ID__', data.transaction_id);
+                        },
+                        onPending: function() {
+                            window.location.href = data.redirect_url;
+                        },
+                        onError: function() {
+                            window.location.href = data.redirect_url;
+                        },
+                        onClose: function() {
+                            window.location.href = data.redirect_url;
+                        }
+                    });
+                } else if (data.error) {
+                    alert('Error: ' + data.error);
+                    payBtn.disabled = false;
+                    payBtn.textContent = 'Confirm Booking';
+                }
+            })
+            .catch(function(err) {
+                alert('Error: ' + (err.responseJSON?.error || 'Unable to process payment. Midtrans may not be configured.'));
+                payBtn.disabled = false;
+                payBtn.textContent = 'Confirm Booking';
+            });
+        });
+    </script>
 </body>
 </html>

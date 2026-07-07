@@ -45,5 +45,7 @@ td {
 
 /* Custom button styles */
 .btn-action {
-    @apply p-2 rounded-lg transition-all duration-300;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
 }

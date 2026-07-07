@@ -18,6 +18,10 @@ class Transaction extends Model
         'status',
         'amount',
         'travel_date',
+        'midtrans_transaction_id',
+        'midtrans_status',
+        'midtrans_payment_type',
+        'midtrans_raw_response',
     ];
 
     public function user()
