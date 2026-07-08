@@ -162,6 +162,10 @@ class CartController extends Controller
 
         $count = CartItem::where('user_id', $user->id)->count();
 
+        if ($request->has('redirect_to_checkout')) {
+            return redirect()->route('cart.checkout');
+        }
+
         if ($request->ajax()) {
             return response()->json([
                 'success'   => true,

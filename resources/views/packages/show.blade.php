@@ -67,7 +67,11 @@
             <h2 id="packageTitle" class="text-[6rem] font-black leading-none uppercase">
                 1 DAY<br>TOUR<br><span class="text-[#4CB7FF]">{{ $package->destination }}</span>
             </h2>
-            <a href="{{ route('transactions.create', $package->id) }}" class="inline-block bg-white text-black px-10 py-4 rounded-full font-black text-xl mt-8 transform hover:scale-105 transition shadow-2xl uppercase text-center">BOOK NOW →</a>
+            <form action="{{ route('cart.add', $package->id) }}" method="POST" class="inline-block mt-8">
+                @csrf
+                <input type="hidden" name="redirect_to_checkout" value="1">
+                <button type="submit" class="bg-white text-black px-10 py-4 rounded-full font-black text-xl transform hover:scale-105 transition shadow-2xl uppercase text-center cursor-pointer">BOOK NOW →</button>
+            </form>
         </div>
     </main>
 </body>

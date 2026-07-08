@@ -29,7 +29,6 @@ Route::post('/payment/callback', [PaymentController::class, 'callback'])->name('
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/transactions', [TransactionController::class, 'userIndex'])->name('transactions.index');
-    Route::get('/transactions/create/{package}', [TransactionController::class, 'create'])->name('transactions.create');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
