@@ -1,4 +1,7 @@
 {
+  "build": {
+    "buildCommand": "npm run build"
+  },
   "deploy": {
     "numReplicas": 1,
     "healthcheckPath": "/up",
